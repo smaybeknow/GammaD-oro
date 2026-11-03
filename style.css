@@ -221,13 +221,6 @@ header a:hover {
     margin-bottom: 20px;
 }
 
-.accordion-content img {
-    width: 100%;
-    height: auto;
-    border-radius: 14px;
-    margin-bottom: 18px;
-    object-fit: cover;
-}
 
 /* если несколько картинок */
 .accordion-gallery {
@@ -244,11 +237,24 @@ header a:hover {
     border-radius: 14px;
 }
 
-/* если одна картинка */
+/* ===== ACCORDION IMAGES ===== */
+
 .accordion-content > img {
-    max-width: 100%;
-    max-height: 520px;
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    height: auto;
+    max-height: none;
+
+    border-radius: 16px;
+
     object-fit: cover;
+
+    margin: 25px 0;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* phone */
@@ -259,10 +265,6 @@ header a:hover {
 
     .accordion-gallery {
         grid-template-columns: 1fr;
-    }
-
-    .accordion-content > img {
-        max-height: none;
     }
 }
 
