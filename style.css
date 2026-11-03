@@ -238,7 +238,39 @@ header a:hover {
 }
 
 /* ===== ACCORDION IMAGES ===== */
+/* ===== FIX IMAGES ON MOBILE ===== */
 
+@media screen and (max-width: 768px) {
+
+    .accordion-item.active .accordion-content {
+        padding: 0 12px 24px;
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+
+    .accordion-content > img,
+    .accordion-content .accordion-gallery img {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: contain;
+        border-radius: 14px;
+    }
+
+    .accordion-gallery {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        gap: 16px;
+    }
+
+    .accordion-gallery img:nth-child(3) {
+        grid-column: auto;
+    }
+}
 .accordion-content > img {
     display: block;
 
