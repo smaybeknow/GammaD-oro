@@ -1,8 +1,13 @@
+
 /* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,9 +18,9 @@ body {
 }
 
 img {
+    display: block;
     max-width: 100%;
     height: auto;
-    display: block;
 }
 
 /* ===== HEADER ===== */
@@ -45,7 +50,7 @@ header {
 header a {
     color: #f5f1e8;
     text-decoration: none;
-    transition: 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 header a:hover {
@@ -111,6 +116,7 @@ header a:hover {
 
 .product-info {
     flex: 1;
+    min-width: 0;
 }
 
 .product-info p {
@@ -143,7 +149,7 @@ header a:hover {
     margin-bottom: 0;
 }
 
-/* ===== ACCORDION ===== */
+/* ===== ACCORDION SECTION ===== */
 .info-section {
     width: 100%;
     padding: 60px 20px;
@@ -154,24 +160,28 @@ header a:hover {
 .accordion {
     width: 100%;
     max-width: 1100px;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 18px;
 }
 
 .accordion-item {
+    width: 100%;
+    min-width: 0;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 196, 80, 0.2);
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .accordion-item:hover {
     transform: translateY(-2px);
 }
 
+/* Accordion button */
 .accordion-header {
     width: 100%;
     background: transparent;
@@ -181,7 +191,7 @@ header a:hover {
     font-size: 24px;
     font-weight: 700;
     text-align: left;
-    padding: 20px 24px;
+    padding: 20px 55px 20px 24px;
     cursor: pointer;
     position: relative;
     font-family: Georgia, serif;
@@ -201,18 +211,21 @@ header a:hover {
     content: "−";
 }
 
+/* Accordion content */
 .accordion-content {
     max-height: 0;
     overflow: hidden;
     padding: 0 24px;
+    min-width: 0;
     transition: max-height 0.5s ease, padding 0.4s ease;
 }
 
 .accordion-item.active .accordion-content {
     max-height: none;
-    padding: 0 50px 30px;
+    padding: 0 35px 30px;
 }
 
+/* Accordion text */
 .accordion-content p {
     color: #f5f1e8;
     font-size: clamp(15px, 2vw, 18px);
@@ -221,83 +234,47 @@ header a:hover {
     margin-bottom: 20px;
 }
 
-
-/* если несколько картинок */
-.accordion-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 18px;
-}
-
-.accordion-gallery img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    height: auto;
-    object-fit: cover;
-    border-radius: 14px;
-}
-
-/* ===== ACCORDION IMAGES ===== */
-/* ===== FIX IMAGES ON MOBILE ===== */
-
-@media screen and (max-width: 768px) {
-
-    .accordion-item.active .accordion-content {
-        padding: 0 12px 24px;
-        width: 100%;
-        box-sizing: border-box;
-        min-width: 0;
-    }
-
-    .accordion-content > img,
-    .accordion-content .accordion-gallery img {
-        display: block !important;
-        width: 100% !important;
-        max-width: none !important;
-        height: auto !important;
-        max-height: none !important;
-        object-fit: contain;
-        border-radius: 14px;
-    }
-
-    .accordion-gallery {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        width: 100%;
-        gap: 16px;
-    }
-
-    .accordion-gallery img:nth-child(3) {
-        grid-column: auto;
-    }
-}
+/* ===== ACCORDION SINGLE IMAGE ===== */
 .accordion-content > img {
     display: block;
-
     width: 100%;
-    max-width: none;
-
+    max-width: 100%;
     height: auto;
     max-height: none;
-
+    object-fit: contain;
     border-radius: 16px;
-
-    object-fit: cover;
-
     margin: 25px 0;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* phone */
-@media (max-width: 768px) {
-    .accordion-item.active .accordion-content {
-        padding: 0 20px 22px;
-    }
+/* ===== TEAM IMAGE GALLERY ===== */
+.accordion-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    margin-top: 25px;
+}
 
-    .accordion-gallery {
-        grid-template-columns: 1fr;
-    }
+.accordion-gallery img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+}
+
+.accordion-gallery img:hover {
+    transform: scale(1.02);
+}
+
+/* Third image fills the gallery width */
+.accordion-gallery img:nth-child(3) {
+    grid-column: 1 / -1;
+    height: 420px;
 }
 
 /* ===== FOOTER ===== */
@@ -337,7 +314,7 @@ header a:hover {
 .footer a {
     color: #f5f1e8;
     text-decoration: none;
-    transition: 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
@@ -376,6 +353,7 @@ header a:hover {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
+
     header {
         padding: 14px 16px;
     }
@@ -395,6 +373,7 @@ header a:hover {
         padding-right: 16px;
     }
 
+    /* Products */
     .product h3 {
         font-size: 28px;
         margin-bottom: 30px;
@@ -417,9 +396,15 @@ header a:hover {
         font-size: 16px;
     }
 
+    /* Accordion */
+    .accordion {
+        width: 100%;
+        max-width: 100%;
+    }
+
     .accordion-header {
         font-size: 20px;
-        padding: 18px 20px;
+        padding: 18px 50px 18px 20px;
     }
 
     .accordion-header::after {
@@ -428,30 +413,47 @@ header a:hover {
     }
 
     .accordion-content {
-        padding: 0 20px;
+        padding: 0 12px;
     }
 
     .accordion-item.active .accordion-content {
-        padding: 0 20px 18px;
+        padding: 0 12px 24px;
     }
 
     .accordion-content p {
         font-size: 15px;
+        line-height: 1.7;
     }
 
-    .accordion-content img {
-        max-width: 180px;
-    }
-
-    .accordion-gallery {
-        justify-content: center;
-    }
-
-    .accordion-gallery img {
+    /* Full-width mobile images */
+    .accordion-content > img {
+        display: block;
+        width: 100%;
         max-width: 100%;
         height: auto;
+        max-height: none;
+        object-fit: contain;
+        margin: 20px 0;
     }
 
+    /* Team gallery on mobile */
+    .accordion-gallery {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        width: 100%;
+    }
+
+    .accordion-gallery img,
+    .accordion-gallery img:nth-child(3) {
+        grid-column: auto;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Footer */
     .footer-container {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -469,6 +471,7 @@ header a:hover {
 
 /* ===== SMALL MOBILE ===== */
 @media (max-width: 480px) {
+
     .product-card {
         border-radius: 14px;
         padding: 16px;
@@ -484,28 +487,38 @@ header a:hover {
 
     .accordion-header {
         font-size: 18px;
-        padding: 16px 18px;
+        padding: 16px 48px 16px 18px;
     }
 
-    .accordion-content img {
-        max-width: 150px;
+    .accordion-item.active .accordion-content {
+        padding: 0 10px 20px;
+    }
+
+    /* Keep images full width on small phones */
+    .accordion-content > img,
+    .accordion-gallery img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
     }
 }
 
-/* базовое состояние (скрыто) */
+/* ===== SCROLL ANIMATIONS ===== */
+
+/* Hidden initial state */
 .animate {
     opacity: 0;
     transform: translateY(30px);
 }
 
-/* когда элемент появляется */
+/* Visible state */
 .animate.show {
     opacity: 1;
     transform: translateY(0);
     transition: all 0.8s ease;
 }
 
-/* вариант слева */
+/* Animate from left */
 .animate-left {
     opacity: 0;
     transform: translateX(-40px);
@@ -517,7 +530,7 @@ header a:hover {
     transition: all 0.8s ease;
 }
 
-/* вариант справа */
+/* Animate from right */
 .animate-right {
     opacity: 0;
     transform: translateX(40px);
